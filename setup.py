@@ -7,8 +7,8 @@ setup(
   description = 'Simple BytesIO based image manipulation library. No hard work and no good results.',
   author = 'Liam (ir-3) H.',
   author_email = 'i@national.shitposting.agency',
-  url = 'https://github.com/blisspy/bliss-ops',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/blisspy/bliss-ops/archive/v_01.tar.gz',    # I explain this later on
+  url = 'https://github.com/blisspy/bliss-ops',
+  download_url = 'https://github.com/blisspy/bliss-ops/archive/v_01.tar.gz',
   keywords = ['imageops', 'simple', 'Bad'],
   install_requires=[
           'wand',
