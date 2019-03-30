@@ -4,9 +4,9 @@
 blissops.imageops
 =================
 
-Somewhat async image manipulation library 
-created for use within the bliss Discord bot. 
-Makes use of numpy and wand and takes BytesIO 
+Somewhat async image manipulation library
+created for use within the bliss Discord bot.
+Makes use of numpy and wand and takes BytesIO
 as an input and as an output.
 
 :copyright: (c) 2019 Liam (ir-3) H.
@@ -19,7 +19,7 @@ from io import BytesIO
 
 from .wandops import bytes_to_wand, wand_to_bytes, _magic, _emboss, _deepfry, _vaporwave, _floor, _concave, _convex, \
     _invert, _sat, _desat, _lsd, _posterize, _grayscale, _bend, _edge, _gay
-from .numpyops import bytes_to_np, np_to_bytes, _sort, _ascii_art, _sobel
+from .numpyops import bytes_to_np, np_to_bytes, _sort, _ascii_art, _sobel, _shuffle
 
 loop = asyncio.get_event_loop()
 
@@ -141,4 +141,10 @@ async def sort(img_bytes: BytesIO):
 async def sobel(img_bytes: BytesIO):
     img = await bytes_to_np(img_bytes)
     img = await run_in_executor(_sobel, img)
+    return await np_to_bytes(img)
+
+
+async def shuffle(img_bytes: BytesIO):
+    img = await bytes_to_np(img_bytes)
+    img = await run_in_executor(_shuffle, img)
     return await np_to_bytes(img)

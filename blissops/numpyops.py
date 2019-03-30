@@ -4,9 +4,9 @@
 blissops.numpyops
 =================
 
-Somewhat async image manipulation library 
-created for use within the bliss Discord bot. 
-Makes use of numpy and wand and takes BytesIO 
+Somewhat async image manipulation library
+created for use within the bliss Discord bot.
+Makes use of numpy and wand and takes BytesIO
 as an input and as an output.
 
 :copyright: (c) 2019 Liam (ir-3) H.
@@ -86,10 +86,17 @@ def _ascii_art(img: np.ndarray):
     return ascii_art
 
 
-@adapt_rgb(each_channel)
-def _sobel_each(image):
-    return skimage.filters.sobel(image)
-
-
 def _sobel(img: np.ndarray):
+    @adapt_rgb(each_channel)
+    def _sobel_each(image):
+        return skimage.filters.sobel(image)
     return rescale_intensity(255 - _sobel_each(img) * 255)
+
+
+def _shuffle(img: np.ndarray):
+    shape = img.shape
+    img = img.reshape((img.shape[0] * img.shape[1], img.shape[2]))
+
+    np.random.shuffle(img)
+
+    return img.reshape(shape)
